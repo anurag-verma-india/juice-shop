@@ -1,0 +1,18 @@
+repos:
+    - repo: local
+      hooks:
+          # 1. Giteaks on every commit (fast)
+          - id: gitleaks-changed
+            name: gitleaks (changed files)
+            entry: scripts/hooks/gitleaks-changed.sh
+            language: system
+            stages: [pre-commit]
+            # stages: [commit]
+
+          # 2. Full security checks before push
+          - id: security-protected-branches
+            name: security checks (protected branches)
+            entry: scripts/hooks/security-protected-branches.sh
+            language: system
+            stages: [pre-push]
+            # stages: [push]
